@@ -1,0 +1,12 @@
+include: package:very_good_analysis/analysis_options.yaml
+
+linter:
+  rules:
+    # Temporarily disable this rule until the app reaches a more stable state
+    public_member_api_docs: false
+    # Explicitly specify the arguments to be clear
+    avoid_redundant_argument_values: false
+    # Allowing positional boolean parameters. Use with discretion.
+    avoid_positional_boolean_parameters: false
+    # Define abstract classes freely
+    one_member_abstracts: false

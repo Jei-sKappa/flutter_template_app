@@ -1,0 +1,8 @@
+name: _
+publish_to: none
+environment:
+  sdk: ^3.7.2
+workspace:
+  - app
+  - packages/template_domain
+  - packages/template_fake_data
