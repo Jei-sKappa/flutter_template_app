@@ -1,3 +1,3 @@
-# Flutter Template Project
+# Template
 
 Coming soon...

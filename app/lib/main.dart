@@ -1,8 +1,8 @@
-import 'package:app/bootstrap.dart';
-import 'package:template_fake_data/template_fake_data.dart';
+import 'package:template/bootstrap.dart';
+import 'package:template/data/data.dart';
 
 void main() {
-  final templateRepository = FakeTemplateRepository();
+  final templateRepository = InMemoryTemplateRepository();
 
   bootstrap(templateRepository);
 }

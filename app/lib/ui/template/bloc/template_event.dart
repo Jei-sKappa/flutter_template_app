@@ -30,7 +30,6 @@ class TemplateItemCreationRequested extends TemplateEvent {
   List<Object?> get props => [];
 }
 
-
 class TemplateItemUpdateRequested extends TemplateEvent {
   const TemplateItemUpdateRequested({required this.item});
 
@@ -39,7 +38,6 @@ class TemplateItemUpdateRequested extends TemplateEvent {
   @override
   List<Object?> get props => [];
 }
-
 
 class TemplateItemDeletionRequested extends TemplateEvent {
   const TemplateItemDeletionRequested({required this.id});

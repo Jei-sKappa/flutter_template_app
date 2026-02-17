@@ -1,0 +1,9 @@
+# FVM Version Cache
+.fvm/
+
+# Custom
+
+.DS_Store
+
+temp
+

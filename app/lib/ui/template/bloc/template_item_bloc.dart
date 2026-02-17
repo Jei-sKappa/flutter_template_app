@@ -1,17 +1,17 @@
-import 'package:app/core/bloc/bloc.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template_domain/template_domain.dart';
+import 'package:template/core/bloc/bloc.dart';
+import 'package:template/domain/domain.dart';
 
 part 'template_event.dart';
-part 'template_state.dart';
 part 'template_item_bloc.mapper.dart';
+part 'template_state.dart';
 
 class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
     with TemplateBlocEventStatusMixin<TemplateEvent, TemplateState> {
   TemplateItemBloc({required this.templateRepository})
-    : super(const TemplateState.initial()) {
+      : super(const TemplateState.initial()) {
     on<TemplateLoadItemsRequested>(_onTemplateLoadItemsRequested);
     on<TemplateItemSubscriptionRequested>(_onTemplateItemSubscriptionRequested);
     on<TemplateItemCreationRequested>(_onTemplateItemCreationRequested);

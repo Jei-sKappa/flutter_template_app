@@ -1,5 +1,5 @@
-import 'package:app/ui/template/template.dart';
 import 'package:flutter/material.dart';
+import 'package:template/ui/template/template.dart';
 
 class AppScreen extends StatelessWidget {
   const AppScreen({super.key});

@@ -1,10 +1,9 @@
-import 'package:app/core/bloc/bloc.dart';
-import 'package:app/core/helpers/listen_for_event_failures.dart';
-import 'package:app/ui/template/components/load_projects_button_component.dart';
-import 'package:app/ui/template/template.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template_domain/template_domain.dart';
+import 'package:template/core/bloc/bloc.dart';
+import 'package:template/core/helpers/listen_for_event_failures.dart';
+import 'package:template/domain/domain.dart';
+import 'package:template/ui/template/template.dart';
 
 class TemplateItemScreen extends StatelessWidget {
   const TemplateItemScreen({super.key});
@@ -31,19 +30,17 @@ class _TemplateItemViewState extends State<TemplateItemView> {
     super.initState();
     // Subscribe to items when the screen is initialized
     context.read<TemplateItemBloc>().add(
-      const TemplateItemSubscriptionRequested(),
-    );
+          const TemplateItemSubscriptionRequested(),
+        );
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocTemplateEventStatusListener<
-      TemplateItemBloc,
-      TemplateEvent
-    >(
+    return MultiBlocTemplateEventStatusListener<TemplateItemBloc,
+        TemplateEvent>(
       listenWhen: listenForEventFailures,
       listener: (context, event, status) {
-        final failure = status as TemplateFailureEventStatus;
+        final failure = status as AppFailureEventStatus;
 
         ScaffoldMessenger.of(
           context,
@@ -97,7 +94,7 @@ class _TemplateItemViewState extends State<TemplateItemView> {
               itemCount: items.length,
               itemBuilder: (context, index) {
                 final item = items[index];
-                return ItemCard(
+                return ItemCardComponent(
                   item: item,
                   onEdit: () => _showEditDialog(context, item),
                   onDelete: () => _showDeleteConfirmation(context, item),
@@ -119,79 +116,76 @@ class _TemplateItemViewState extends State<TemplateItemView> {
   void _showCreateDialog(BuildContext context) {
     showDialog<void>(
       context: context,
-      builder:
-          (dialogContext) => ItemFormDialog(
-            title: 'Create Item',
-            onSave: (name, description, isActive) {
-              final item = TemplateItem(
-                id: DateTime.now().millisecondsSinceEpoch, // Temporary ID
-                name: name,
-                description: description,
-                createdAt: DateTime.now(),
-                isActive: isActive,
-              );
-              context.read<TemplateItemBloc>().add(
+      builder: (dialogContext) => ItemFormDialog(
+        title: 'Create Item',
+        onSave: (name, description, isActive) {
+          final item = TemplateItem(
+            id: DateTime.now().millisecondsSinceEpoch, // Temporary ID
+            name: name,
+            description: description,
+            createdAt: DateTime.now(),
+            isActive: isActive,
+          );
+          context.read<TemplateItemBloc>().add(
                 TemplateItemCreationRequested(item: item),
               );
-            },
-          ),
+        },
+      ),
     );
   }
 
   void _showEditDialog(BuildContext context, TemplateItem item) {
     showDialog<void>(
       context: context,
-      builder:
-          (dialogContext) => ItemFormDialog(
-            title: 'Edit Item',
-            initialName: item.name,
-            initialDescription: item.description,
-            initialIsActive: item.isActive,
-            onSave: (name, description, isActive) {
-              final updatedItem = item.copyWith(
-                name: name,
-                description: description,
-                isActive: isActive,
-              );
-              context.read<TemplateItemBloc>().add(
+      builder: (dialogContext) => ItemFormDialog(
+        title: 'Edit Item',
+        initialName: item.name,
+        initialDescription: item.description,
+        initialIsActive: item.isActive,
+        onSave: (name, description, isActive) {
+          final updatedItem = item.copyWith(
+            name: name,
+            description: description,
+            isActive: isActive,
+          );
+          context.read<TemplateItemBloc>().add(
                 TemplateItemUpdateRequested(item: updatedItem),
               );
-            },
-          ),
+        },
+      ),
     );
   }
 
   void _showDeleteConfirmation(BuildContext context, TemplateItem item) {
     showDialog<void>(
       context: context,
-      builder:
-          (dialogContext) => AlertDialog(
-            title: const Text('Delete Item'),
-            content: Text('Are you sure you want to delete "${item.name}"?'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(dialogContext).pop(),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<TemplateItemBloc>().add(
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Delete Item'),
+        content: Text('Are you sure you want to delete "${item.name}"?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(dialogContext).pop(),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<TemplateItemBloc>().add(
                     TemplateItemDeletionRequested(id: item.id),
                   );
-                  Navigator.of(dialogContext).pop();
-                },
-                style: TextButton.styleFrom(foregroundColor: Colors.red),
-                child: const Text('Delete'),
-              ),
-            ],
+              Navigator.of(dialogContext).pop();
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Delete'),
           ),
+        ],
+      ),
     );
   }
 
   void _toggleItemActive(BuildContext context, TemplateItem item) {
     final updatedItem = item.copyWith(isActive: !item.isActive);
     context.read<TemplateItemBloc>().add(
-      TemplateItemUpdateRequested(item: updatedItem),
-    );
+          TemplateItemUpdateRequested(item: updatedItem),
+        );
   }
 }

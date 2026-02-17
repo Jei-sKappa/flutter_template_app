@@ -1,8 +1,8 @@
-import 'package:app/core/bloc/bloc.dart';
+import 'package:template/core/bloc/bloc.dart';
 
 bool listenForEventFailures(
-  TemplateEventStatus? previous,
-  TemplateEventStatus? current,
+  AppEventStatus? previous,
+  AppEventStatus? current,
 ) {
-  return current is TemplateFailureEventStatus;
+  return current is AppFailureEventStatus;
 }

@@ -1,0 +1,5 @@
+{
+  "conventionalCommits.gitmoji": false,
+  "conventionalCommits.promptFooter": false,
+  "dart.flutterSdkPath": ".fvm/versions/3.41.0"
+}

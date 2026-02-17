@@ -2,6 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // dart format off
 // ignore_for_file: type=lint
+// ignore_for_file: invalid_use_of_protected_member
 // ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
@@ -61,11 +62,11 @@ mixin TemplateStateMappable {
   }
 
   TemplateStateCopyWith<TemplateState, TemplateState, TemplateState>
-  get copyWith => _TemplateStateCopyWithImpl<TemplateState, TemplateState>(
-    this as TemplateState,
-    $identity,
-    $identity,
-  );
+      get copyWith => _TemplateStateCopyWithImpl<TemplateState, TemplateState>(
+            this as TemplateState,
+            $identity,
+            $identity,
+          );
   @override
   String toString() {
     return TemplateStateMapper.ensureInitialized().stringifyValue(
@@ -97,12 +98,8 @@ extension TemplateStateValueCopy<$R, $Out>
 
 abstract class TemplateStateCopyWith<$R, $In extends TemplateState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<
-    $R,
-    TemplateItem,
-    TemplateItemCopyWith<$R, TemplateItem, TemplateItem>
-  >
-  get items;
+  ListCopyWith<$R, TemplateItem,
+      TemplateItemCopyWith<$R, TemplateItem, TemplateItem>> get items;
   $R call({List<TemplateItem>? items});
   TemplateStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -116,16 +113,13 @@ class _TemplateStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<TemplateState> $mapper =
       TemplateStateMapper.ensureInitialized();
   @override
-  ListCopyWith<
-    $R,
-    TemplateItem,
-    TemplateItemCopyWith<$R, TemplateItem, TemplateItem>
-  >
-  get items => ListCopyWith(
-    $value.items,
-    (v, t) => v.copyWith.$chain(t),
-    (v) => call(items: v),
-  );
+  ListCopyWith<$R, TemplateItem,
+          TemplateItemCopyWith<$R, TemplateItem, TemplateItem>>
+      get items => ListCopyWith(
+            $value.items,
+            (v, t) => v.copyWith.$chain(t),
+            (v) => call(items: v),
+          );
   @override
   $R call({List<TemplateItem>? items}) =>
       $apply(FieldCopyWithData({if (items != null) #items: items}));
@@ -136,6 +130,6 @@ class _TemplateStateCopyWithImpl<$R, $Out>
   @override
   TemplateStateCopyWith<$R2, TemplateState, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
-  ) => _TemplateStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  ) =>
+      _TemplateStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
-
