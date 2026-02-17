@@ -48,7 +48,7 @@ mixin AppEventStatusMappable {
   String toJson();
   Map<String, dynamic> toMap();
   AppEventStatusCopyWith<AppEventStatus, AppEventStatus, AppEventStatus>
-      get copyWith;
+  get copyWith;
 }
 
 abstract class AppEventStatusCopyWith<$R, $In extends AppEventStatus, $Out>
@@ -105,10 +105,16 @@ mixin AppLoadingEventStatusMappable {
         .encodeMap<AppLoadingEventStatus>(this as AppLoadingEventStatus);
   }
 
-  AppLoadingEventStatusCopyWith<AppLoadingEventStatus, AppLoadingEventStatus,
-      AppLoadingEventStatus> get copyWith => _AppLoadingEventStatusCopyWithImpl<
-          AppLoadingEventStatus, AppLoadingEventStatus>(
-      this as AppLoadingEventStatus, $identity, $identity);
+  AppLoadingEventStatusCopyWith<
+    AppLoadingEventStatus,
+    AppLoadingEventStatus,
+    AppLoadingEventStatus
+  >
+  get copyWith =>
+      _AppLoadingEventStatusCopyWithImpl<
+        AppLoadingEventStatus,
+        AppLoadingEventStatus
+      >(this as AppLoadingEventStatus, $identity, $identity);
   @override
   String toString() {
     return AppLoadingEventStatusMapper.ensureInitialized().stringifyValue(
@@ -135,16 +141,17 @@ mixin AppLoadingEventStatusMappable {
 extension AppLoadingEventStatusValueCopy<$R, $Out>
     on ObjectCopyWith<$R, AppLoadingEventStatus, $Out> {
   AppLoadingEventStatusCopyWith<$R, AppLoadingEventStatus, $Out>
-      get $asAppLoadingEventStatus => $base.as(
-            (v, t, t2) =>
-                _AppLoadingEventStatusCopyWithImpl<$R, $Out>(v, t, t2),
-          );
+  get $asAppLoadingEventStatus => $base.as(
+    (v, t, t2) => _AppLoadingEventStatusCopyWithImpl<$R, $Out>(v, t, t2),
+  );
 }
 
 abstract class AppLoadingEventStatusCopyWith<
-    $R,
-    $In extends AppLoadingEventStatus,
-    $Out> implements AppEventStatusCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends AppLoadingEventStatus,
+  $Out
+>
+    implements AppEventStatusCopyWith<$R, $In, $Out> {
   @override
   $R call();
   AppLoadingEventStatusCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -167,8 +174,8 @@ class _AppLoadingEventStatusCopyWithImpl<$R, $Out>
 
   @override
   AppLoadingEventStatusCopyWith<$R2, AppLoadingEventStatus, $Out2>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _AppLoadingEventStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _AppLoadingEventStatusCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
 class AppSuccessEventStatusMapper
@@ -228,23 +235,29 @@ mixin AppSuccessEventStatusMappable<TData extends dynamic> {
   String toJson() {
     return AppSuccessEventStatusMapper.ensureInitialized()
         .encodeJson<AppSuccessEventStatus<TData>>(
-      this as AppSuccessEventStatus<TData>,
-    );
+          this as AppSuccessEventStatus<TData>,
+        );
   }
 
   Map<String, dynamic> toMap() {
     return AppSuccessEventStatusMapper.ensureInitialized()
         .encodeMap<AppSuccessEventStatus<TData>>(
-      this as AppSuccessEventStatus<TData>,
-    );
+          this as AppSuccessEventStatus<TData>,
+        );
   }
 
-  AppSuccessEventStatusCopyWith<AppSuccessEventStatus<TData>,
-          AppSuccessEventStatus<TData>, AppSuccessEventStatus<TData>, TData>
-      get copyWith => _AppSuccessEventStatusCopyWithImpl<
-          AppSuccessEventStatus<TData>,
-          AppSuccessEventStatus<TData>,
-          TData>(this as AppSuccessEventStatus<TData>, $identity, $identity);
+  AppSuccessEventStatusCopyWith<
+    AppSuccessEventStatus<TData>,
+    AppSuccessEventStatus<TData>,
+    AppSuccessEventStatus<TData>,
+    TData
+  >
+  get copyWith =>
+      _AppSuccessEventStatusCopyWithImpl<
+        AppSuccessEventStatus<TData>,
+        AppSuccessEventStatus<TData>,
+        TData
+      >(this as AppSuccessEventStatus<TData>, $identity, $identity);
   @override
   String toString() {
     return AppSuccessEventStatusMapper.ensureInitialized().stringifyValue(
@@ -271,17 +284,18 @@ mixin AppSuccessEventStatusMappable<TData extends dynamic> {
 extension AppSuccessEventStatusValueCopy<$R, $Out, TData extends dynamic>
     on ObjectCopyWith<$R, AppSuccessEventStatus<TData>, $Out> {
   AppSuccessEventStatusCopyWith<$R, AppSuccessEventStatus<TData>, $Out, TData>
-      get $asAppSuccessEventStatus => $base.as(
-            (v, t, t2) =>
-                _AppSuccessEventStatusCopyWithImpl<$R, $Out, TData>(v, t, t2),
-          );
+  get $asAppSuccessEventStatus => $base.as(
+    (v, t, t2) => _AppSuccessEventStatusCopyWithImpl<$R, $Out, TData>(v, t, t2),
+  );
 }
 
 abstract class AppSuccessEventStatusCopyWith<
-    $R,
-    $In extends AppSuccessEventStatus<TData>,
-    $Out,
-    TData extends dynamic> implements AppEventStatusCopyWith<$R, $In, $Out> {
+  $R,
+  $In extends AppSuccessEventStatus<TData>,
+  $Out,
+  TData extends dynamic
+>
+    implements AppEventStatusCopyWith<$R, $In, $Out> {
   @override
   $R call({TData? data});
   AppSuccessEventStatusCopyWith<$R2, $In, $Out2, TData> $chain<$R2, $Out2>(
@@ -292,8 +306,12 @@ abstract class AppSuccessEventStatusCopyWith<
 class _AppSuccessEventStatusCopyWithImpl<$R, $Out, TData extends dynamic>
     extends ClassCopyWithBase<$R, AppSuccessEventStatus<TData>, $Out>
     implements
-        AppSuccessEventStatusCopyWith<$R, AppSuccessEventStatus<TData>, $Out,
-            TData> {
+        AppSuccessEventStatusCopyWith<
+          $R,
+          AppSuccessEventStatus<TData>,
+          $Out,
+          TData
+        > {
   _AppSuccessEventStatusCopyWithImpl(super.value, super.then, super.then2);
 
   @override
@@ -308,9 +326,8 @@ class _AppSuccessEventStatusCopyWithImpl<$R, $Out, TData extends dynamic>
 
   @override
   AppSuccessEventStatusCopyWith<$R2, AppSuccessEventStatus<TData>, $Out2, TData>
-      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-          _AppSuccessEventStatusCopyWithImpl<$R2, $Out2, TData>(
-              $value, $cast, t);
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _AppSuccessEventStatusCopyWithImpl<$R2, $Out2, TData>($value, $cast, t);
 }
 
 class AppFailureEventStatusMapper
@@ -330,8 +347,9 @@ class AppFailureEventStatusMapper
   @override
   final String id = 'AppFailureEventStatus';
   @override
-  Function get typeFactory => <TFailure extends AppException>(f) =>
-      f<AppFailureEventStatus<TFailure>>();
+  Function get typeFactory =>
+      <TFailure extends AppException>(f) =>
+          f<AppFailureEventStatus<TFailure>>();
 
   static AppException _$exception(AppFailureEventStatus v) => v.exception;
   static dynamic _arg$exception<TFailure extends AppException>(f) =>
@@ -348,7 +366,7 @@ class AppFailureEventStatusMapper
   };
 
   static AppFailureEventStatus<TFailure>
-      _instantiate<TFailure extends AppException>(DecodingData data) {
+  _instantiate<TFailure extends AppException>(DecodingData data) {
     return AppFailureEventStatus(data.dec(_f$exception));
   }
 
@@ -362,7 +380,7 @@ class AppFailureEventStatusMapper
   }
 
   static AppFailureEventStatus<TFailure>
-      fromJson<TFailure extends AppException>(String json) {
+  fromJson<TFailure extends AppException>(String json) {
     return ensureInitialized().decodeJson<AppFailureEventStatus<TFailure>>(
       json,
     );
@@ -373,27 +391,29 @@ mixin AppFailureEventStatusMappable<TFailure extends AppException> {
   String toJson() {
     return AppFailureEventStatusMapper.ensureInitialized()
         .encodeJson<AppFailureEventStatus<TFailure>>(
-      this as AppFailureEventStatus<TFailure>,
-    );
+          this as AppFailureEventStatus<TFailure>,
+        );
   }
 
   Map<String, dynamic> toMap() {
     return AppFailureEventStatusMapper.ensureInitialized()
         .encodeMap<AppFailureEventStatus<TFailure>>(
-      this as AppFailureEventStatus<TFailure>,
-    );
+          this as AppFailureEventStatus<TFailure>,
+        );
   }
 
   AppFailureEventStatusCopyWith<
-          AppFailureEventStatus<TFailure>,
-          AppFailureEventStatus<TFailure>,
-          AppFailureEventStatus<TFailure>,
-          TFailure>
-      get copyWith => _AppFailureEventStatusCopyWithImpl<
-              AppFailureEventStatus<TFailure>,
-              AppFailureEventStatus<TFailure>,
-              TFailure>(
-          this as AppFailureEventStatus<TFailure>, $identity, $identity);
+    AppFailureEventStatus<TFailure>,
+    AppFailureEventStatus<TFailure>,
+    AppFailureEventStatus<TFailure>,
+    TFailure
+  >
+  get copyWith =>
+      _AppFailureEventStatusCopyWithImpl<
+        AppFailureEventStatus<TFailure>,
+        AppFailureEventStatus<TFailure>,
+        TFailure
+      >(this as AppFailureEventStatus<TFailure>, $identity, $identity);
   @override
   String toString() {
     return AppFailureEventStatusMapper.ensureInitialized().stringifyValue(
@@ -417,23 +437,30 @@ mixin AppFailureEventStatusMappable<TFailure extends AppException> {
   }
 }
 
-extension AppFailureEventStatusValueCopy<$R, $Out,
-        TFailure extends AppException>
+extension AppFailureEventStatusValueCopy<
+  $R,
+  $Out,
+  TFailure extends AppException
+>
     on ObjectCopyWith<$R, AppFailureEventStatus<TFailure>, $Out> {
-  AppFailureEventStatusCopyWith<$R,
-          AppFailureEventStatus<TFailure>, $Out, TFailure>
-      get $asAppFailureEventStatus => $base.as(
-            (v, t, t2) =>
-                _AppFailureEventStatusCopyWithImpl<$R, $Out, TFailure>(
-                    v, t, t2),
-          );
+  AppFailureEventStatusCopyWith<
+    $R,
+    AppFailureEventStatus<TFailure>,
+    $Out,
+    TFailure
+  >
+  get $asAppFailureEventStatus => $base.as(
+    (v, t, t2) =>
+        _AppFailureEventStatusCopyWithImpl<$R, $Out, TFailure>(v, t, t2),
+  );
 }
 
 abstract class AppFailureEventStatusCopyWith<
-        $R,
-        $In extends AppFailureEventStatus<TFailure>,
-        $Out,
-        TFailure extends AppException>
+  $R,
+  $In extends AppFailureEventStatus<TFailure>,
+  $Out,
+  TFailure extends AppException
+>
     implements AppEventStatusCopyWith<$R, $In, $Out> {
   @override
   $R call({TFailure? exception});
@@ -442,12 +469,19 @@ abstract class AppFailureEventStatusCopyWith<
   );
 }
 
-class _AppFailureEventStatusCopyWithImpl<$R, $Out,
-        TFailure extends AppException>
+class _AppFailureEventStatusCopyWithImpl<
+  $R,
+  $Out,
+  TFailure extends AppException
+>
     extends ClassCopyWithBase<$R, AppFailureEventStatus<TFailure>, $Out>
     implements
-        AppFailureEventStatusCopyWith<$R, AppFailureEventStatus<TFailure>, $Out,
-            TFailure> {
+        AppFailureEventStatusCopyWith<
+          $R,
+          AppFailureEventStatus<TFailure>,
+          $Out,
+          TFailure
+        > {
   _AppFailureEventStatusCopyWithImpl(super.value, super.then, super.then2);
 
   @override
@@ -461,12 +495,17 @@ class _AppFailureEventStatusCopyWithImpl<$R, $Out,
       AppFailureEventStatus(data.get(#exception, or: $value.exception));
 
   @override
-  AppFailureEventStatusCopyWith<$R2, AppFailureEventStatus<TFailure>, $Out2,
-      TFailure> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
+  AppFailureEventStatusCopyWith<
+    $R2,
+    AppFailureEventStatus<TFailure>,
+    $Out2,
+    TFailure
+  >
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _AppFailureEventStatusCopyWithImpl<$R2, $Out2, TFailure>(
         $value,
         $cast,
         t,
       );
 }
+

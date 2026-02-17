@@ -148,28 +148,27 @@ class _TemplateItemCopyWithImpl<$R, $Out>
     String? description,
     DateTime? createdAt,
     bool? isActive,
-  }) =>
-      $apply(
-        FieldCopyWithData({
-          if (id != null) #id: id,
-          if (name != null) #name: name,
-          if (description != null) #description: description,
-          if (createdAt != null) #createdAt: createdAt,
-          if (isActive != null) #isActive: isActive,
-        }),
-      );
+  }) => $apply(
+    FieldCopyWithData({
+      if (id != null) #id: id,
+      if (name != null) #name: name,
+      if (description != null) #description: description,
+      if (createdAt != null) #createdAt: createdAt,
+      if (isActive != null) #isActive: isActive,
+    }),
+  );
   @override
   TemplateItem $make(CopyWithData data) => TemplateItem(
-        id: data.get(#id, or: $value.id),
-        name: data.get(#name, or: $value.name),
-        description: data.get(#description, or: $value.description),
-        createdAt: data.get(#createdAt, or: $value.createdAt),
-        isActive: data.get(#isActive, or: $value.isActive),
-      );
+    id: data.get(#id, or: $value.id),
+    name: data.get(#name, or: $value.name),
+    description: data.get(#description, or: $value.description),
+    createdAt: data.get(#createdAt, or: $value.createdAt),
+    isActive: data.get(#isActive, or: $value.isActive),
+  );
 
   @override
   TemplateItemCopyWith<$R2, TemplateItem, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
-  ) =>
-      _TemplateItemCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  ) => _TemplateItemCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+

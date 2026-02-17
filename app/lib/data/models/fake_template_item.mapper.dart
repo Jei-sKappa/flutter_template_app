@@ -82,12 +82,12 @@ mixin FakeTemplateItemMappable {
   }
 
   FakeTemplateItemCopyWith<FakeTemplateItem, FakeTemplateItem, FakeTemplateItem>
-      get copyWith =>
-          _FakeTemplateItemCopyWithImpl<FakeTemplateItem, FakeTemplateItem>(
-            this as FakeTemplateItem,
-            $identity,
-            $identity,
-          );
+  get copyWith =>
+      _FakeTemplateItemCopyWithImpl<FakeTemplateItem, FakeTemplateItem>(
+        this as FakeTemplateItem,
+        $identity,
+        $identity,
+      );
   @override
   String toString() {
     return FakeTemplateItemMapper.ensureInitialized().stringifyValue(
@@ -114,8 +114,8 @@ mixin FakeTemplateItemMappable {
 extension FakeTemplateItemValueCopy<$R, $Out>
     on ObjectCopyWith<$R, FakeTemplateItem, $Out> {
   FakeTemplateItemCopyWith<$R, FakeTemplateItem, $Out>
-      get $asFakeTemplateItem => $base
-          .as((v, t, t2) => _FakeTemplateItemCopyWithImpl<$R, $Out>(v, t, t2));
+  get $asFakeTemplateItem =>
+      $base.as((v, t, t2) => _FakeTemplateItemCopyWithImpl<$R, $Out>(v, t, t2));
 }
 
 abstract class FakeTemplateItemCopyWith<$R, $In extends FakeTemplateItem, $Out>
@@ -145,30 +145,28 @@ class _FakeTemplateItemCopyWithImpl<$R, $Out>
     String? nameAndDescription,
     String? createdAt,
     bool? isActive,
-  }) =>
-      $apply(
-        FieldCopyWithData({
-          if (id != null) #id: id,
-          if (nameAndDescription != null)
-            #nameAndDescription: nameAndDescription,
-          if (createdAt != null) #createdAt: createdAt,
-          if (isActive != null) #isActive: isActive,
-        }),
-      );
+  }) => $apply(
+    FieldCopyWithData({
+      if (id != null) #id: id,
+      if (nameAndDescription != null) #nameAndDescription: nameAndDescription,
+      if (createdAt != null) #createdAt: createdAt,
+      if (isActive != null) #isActive: isActive,
+    }),
+  );
   @override
   FakeTemplateItem $make(CopyWithData data) => FakeTemplateItem(
-        id: data.get(#id, or: $value.id),
-        nameAndDescription: data.get(
-          #nameAndDescription,
-          or: $value.nameAndDescription,
-        ),
-        createdAt: data.get(#createdAt, or: $value.createdAt),
-        isActive: data.get(#isActive, or: $value.isActive),
-      );
+    id: data.get(#id, or: $value.id),
+    nameAndDescription: data.get(
+      #nameAndDescription,
+      or: $value.nameAndDescription,
+    ),
+    createdAt: data.get(#createdAt, or: $value.createdAt),
+    isActive: data.get(#isActive, or: $value.isActive),
+  );
 
   @override
   FakeTemplateItemCopyWith<$R2, FakeTemplateItem, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
-  ) =>
-      _FakeTemplateItemCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  ) => _FakeTemplateItemCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+
