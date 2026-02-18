@@ -10,3 +10,5 @@ linter:
     avoid_positional_boolean_parameters: false
     # Define abstract classes freely
     one_member_abstracts: false
+    # I wanna write todos like normal
+    flutter_style_todos: false

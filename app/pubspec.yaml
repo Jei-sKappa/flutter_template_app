@@ -8,8 +8,7 @@ environment:
   sdk: ^3.6.0
 
 dependencies:
-  bloc_event_status: ^1.1.1
-  bloc_presentation: ^1.1.2
+  bloc_event_status: ^2.0.0
   dart_mappable: ^4.6.1
   equatable: ^2.0.8
   flutter:
@@ -18,11 +17,25 @@ dependencies:
   provider: ^6.1.5
 
 dev_dependencies:
+  bloc_event_status_generator: ^1.0.0
   build_runner: ^2.11.1
   dart_mappable_builder: ^4.6.4
   flutter_test:
     sdk: flutter
   very_good_analysis: ^10.2.0
+
+dependency_overrides:
+  bloc_event_status:
+    git:
+      url: https://github.com/Jei-sKappa/bloc_event_status.git
+      ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      path: packages/bloc_event_status
+  bloc_event_status_generator:
+    git:
+      url: https://github.com/Jei-sKappa/bloc_event_status.git
+      ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      path: packages/bloc_event_status_generator
+
 
 flutter:
   uses-material-design: true

@@ -16,6 +16,7 @@ class TemplateStateMapper extends ClassMapperBase<TemplateState> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = TemplateStateMapper._());
       TemplateItemMapper.ensureInitialized();
+      AppEventStatusMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -28,12 +29,31 @@ class TemplateStateMapper extends ClassMapperBase<TemplateState> {
     'items',
     _$items,
   );
+  static EventStatuses<TemplateEvent, AppEventStatus> _$eventStatuses(
+    TemplateState v,
+  ) => v.eventStatuses;
+  static const Field<
+    TemplateState,
+    EventStatuses<TemplateEvent, AppEventStatus>
+  >
+  _f$eventStatuses = Field(
+    'eventStatuses',
+    _$eventStatuses,
+    opt: true,
+    def: const EventStatuses(),
+  );
 
   @override
-  final MappableFields<TemplateState> fields = const {#items: _f$items};
+  final MappableFields<TemplateState> fields = const {
+    #items: _f$items,
+    #eventStatuses: _f$eventStatuses,
+  };
 
   static TemplateState _instantiate(DecodingData data) {
-    return TemplateState(items: data.dec(_f$items));
+    return TemplateState(
+      items: data.dec(_f$items),
+      eventStatuses: data.dec(_f$eventStatuses),
+    );
   }
 
   @override
@@ -62,11 +82,11 @@ mixin TemplateStateMappable {
   }
 
   TemplateStateCopyWith<TemplateState, TemplateState, TemplateState>
-      get copyWith => _TemplateStateCopyWithImpl<TemplateState, TemplateState>(
-            this as TemplateState,
-            $identity,
-            $identity,
-          );
+  get copyWith => _TemplateStateCopyWithImpl<TemplateState, TemplateState>(
+    this as TemplateState,
+    $identity,
+    $identity,
+  );
   @override
   String toString() {
     return TemplateStateMapper.ensureInitialized().stringifyValue(
@@ -98,9 +118,16 @@ extension TemplateStateValueCopy<$R, $Out>
 
 abstract class TemplateStateCopyWith<$R, $In extends TemplateState, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, TemplateItem,
-      TemplateItemCopyWith<$R, TemplateItem, TemplateItem>> get items;
-  $R call({List<TemplateItem>? items});
+  ListCopyWith<
+    $R,
+    TemplateItem,
+    TemplateItemCopyWith<$R, TemplateItem, TemplateItem>
+  >
+  get items;
+  $R call({
+    List<TemplateItem>? items,
+    EventStatuses<TemplateEvent, AppEventStatus>? eventStatuses,
+  });
   TemplateStateCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -113,23 +140,35 @@ class _TemplateStateCopyWithImpl<$R, $Out>
   late final ClassMapperBase<TemplateState> $mapper =
       TemplateStateMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, TemplateItem,
-          TemplateItemCopyWith<$R, TemplateItem, TemplateItem>>
-      get items => ListCopyWith(
-            $value.items,
-            (v, t) => v.copyWith.$chain(t),
-            (v) => call(items: v),
-          );
+  ListCopyWith<
+    $R,
+    TemplateItem,
+    TemplateItemCopyWith<$R, TemplateItem, TemplateItem>
+  >
+  get items => ListCopyWith(
+    $value.items,
+    (v, t) => v.copyWith.$chain(t),
+    (v) => call(items: v),
+  );
   @override
-  $R call({List<TemplateItem>? items}) =>
-      $apply(FieldCopyWithData({if (items != null) #items: items}));
+  $R call({
+    List<TemplateItem>? items,
+    EventStatuses<TemplateEvent, AppEventStatus>? eventStatuses,
+  }) => $apply(
+    FieldCopyWithData({
+      if (items != null) #items: items,
+      if (eventStatuses != null) #eventStatuses: eventStatuses,
+    }),
+  );
   @override
-  TemplateState $make(CopyWithData data) =>
-      TemplateState(items: data.get(#items, or: $value.items));
+  TemplateState $make(CopyWithData data) => TemplateState(
+    items: data.get(#items, or: $value.items),
+    eventStatuses: data.get(#eventStatuses, or: $value.eventStatuses),
+  );
 
   @override
   TemplateStateCopyWith<$R2, TemplateState, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
-  ) =>
-      _TemplateStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
+  ) => _TemplateStateCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
+

@@ -52,19 +52,21 @@ packages:
   bloc_event_status:
     dependency: "direct main"
     description:
-      name: bloc_event_status
-      sha256: "0641b1ad8c6209a8f50b0092c64d8940442a55d42730060c5aab0ffff468a4e2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.1"
-  bloc_presentation:
-    dependency: "direct main"
+      path: "packages/bloc_event_status"
+      ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      resolved-ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      url: "https://github.com/Jei-sKappa/bloc_event_status.git"
+    source: git
+    version: "2.0.0"
+  bloc_event_status_generator:
+    dependency: "direct dev"
     description:
-      name: bloc_presentation
-      sha256: ccc309371d49b2618692cf75664b87dd135fc439b5d0b0faaa7515117de1d493
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.2"
+      path: "packages/bloc_event_status_generator"
+      ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      resolved-ref: c9a5d22bef3fde4f2c7d693c6184e85e852301e4
+      url: "https://github.com/Jei-sKappa/bloc_event_status.git"
+    source: git
+    version: "1.0.0"
   boolean_selector:
     dependency: transitive
     description:

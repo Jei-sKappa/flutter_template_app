@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:template/core/bloc/bloc.dart';
-import 'package:template/core/helpers/listen_for_event_failures.dart';
 import 'package:template/domain/domain.dart';
 import 'package:template/ui/template/template.dart';
 
@@ -36,11 +35,13 @@ class _TemplateItemViewState extends State<TemplateItemView> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocTemplateEventStatusListener<TemplateItemBloc,
-        TemplateEvent>(
-      listenWhen: listenForEventFailures,
-      listener: (context, event, status) {
-        final failure = status as AppFailureEventStatus;
+    return BlocListener<TemplateItemBloc, TemplateState>(
+      listenWhen: (previous, current) =>
+          previous.lastEventStatus != current.lastEventStatus &&
+          current.lastEventStatus?.status is AppFailureEventStatus,
+      listener: (context, state) {
+        final failure =
+            state.lastEventStatus!.status as AppFailureEventStatus;
 
         ScaffoldMessenger.of(
           context,

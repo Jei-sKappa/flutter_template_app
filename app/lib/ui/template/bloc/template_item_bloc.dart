@@ -1,3 +1,4 @@
+import 'package:bloc_event_status/bloc_event_status.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,10 +7,11 @@ import 'package:template/domain/domain.dart';
 
 part 'template_event.dart';
 part 'template_item_bloc.mapper.dart';
+part 'template_item_bloc.bes.g.dart';
 part 'template_state.dart';
 
-class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
-    with TemplateBlocEventStatusMixin<TemplateEvent, TemplateState> {
+@blocEventStatus
+class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState> {
   TemplateItemBloc({required this.templateRepository})
       : super(const TemplateState.initial()) {
     on<TemplateLoadItemsRequested>(_onTemplateLoadItemsRequested);
@@ -25,15 +27,14 @@ class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
     TemplateLoadItemsRequested event,
     Emitter<TemplateState> emit,
   ) async {
-    emitLoadingStatus(event);
+    emit.loading(event, state);
 
     final result = await templateRepository.getAll();
     switch (result) {
       case final Failure<List<TemplateItem>> failure:
-        emitFailureStatus(event, failure.exception);
+        _handleFailure(event, emit, failure.exception);
       case final Ok<List<TemplateItem>> ok:
-        emit(state.copyWith(items: ok.value));
-        emitSuccessStatus(event);
+        emit.success(event, state.copyWith(items: ok.value));
     }
   }
 
@@ -46,10 +47,9 @@ class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
       onData: (items) {
         switch (items) {
           case final Failure<List<TemplateItem>> failure:
-            emitFailureStatus(event, failure.exception);
+            _handleFailure(event, emit, failure.exception);
           case final Ok<List<TemplateItem>> ok:
-            emit(state.copyWith(items: ok.value));
-            emitSuccessStatus(event);
+            emit.success(event, state.copyWith(items: ok.value));
         }
       },
     );
@@ -59,14 +59,14 @@ class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
     TemplateItemCreationRequested event,
     Emitter<TemplateState> emit,
   ) async {
-    emitLoadingStatus(event);
+    emit.loading(event, state);
 
     final result = await templateRepository.create(event.item);
     switch (result) {
       case final Failure<void> failure:
-        emitFailureStatus(event, failure.exception);
+        _handleFailure(event, emit, failure.exception);
       case Ok():
-        emitSuccessStatus(event);
+        emit.success(event, state);
     }
   }
 
@@ -74,14 +74,14 @@ class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
     TemplateItemUpdateRequested event,
     Emitter<TemplateState> emit,
   ) async {
-    emitLoadingStatus(event);
+    emit.loading(event, state);
 
     final result = await templateRepository.update(event.item);
     switch (result) {
       case final Failure<void> failure:
-        emitFailureStatus(event, failure.exception);
+        _handleFailure(event, emit, failure.exception);
       case Ok():
-        emitSuccessStatus(event);
+        emit.success(event, state);
     }
   }
 
@@ -89,14 +89,33 @@ class TemplateItemBloc extends Bloc<TemplateEvent, TemplateState>
     TemplateItemDeletionRequested event,
     Emitter<TemplateState> emit,
   ) async {
-    emitLoadingStatus(event);
+    emit.loading(event, state);
 
     final result = await templateRepository.delete(event.id);
     switch (result) {
       case final Failure<void> failure:
-        emitFailureStatus(event, failure.exception);
+        _handleFailure(event, emit, failure.exception);
       case Ok():
-        emitSuccessStatus(event);
+        emit.success(event, state);
     }
+  }
+
+  void _handleFailure<T extends TemplateEvent, TFailure extends AppException>(
+    T event,
+    Emitter<TemplateState> emit,
+    TFailure exception,
+  ) {
+    emit.failure(event, state, exception);
+    addError(exception, StackTrace.current);
+    final unknownError = switch (exception) {
+      final AppUnknownException exception => exception.caughtErrorObject,
+      _ => null,
+    };
+    // TODO: Add Real Sentry log
+    print(
+      '[SENTRY] Error caught while processing event: $event. '
+      'UserMessage: ${exception.userMessage}.'
+      '${unknownError != null ? ' Details: $unknownError' : ''}',
+    );
   }
 }
